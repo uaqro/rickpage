@@ -7,7 +7,7 @@ const Main = () => {
     <Nav>
       <div>
         <img
-          src="https://f0.pngfuel.com/png/177/132/blue-alien-waving-his-hand-clip-art-png-clip-art.png"
+          src="https://www.stickpng.com/assets/images/58f37731a4fa116215a92411.png"
           alt="meeseeks"
         />
         <Link to={"/"}>HOME</Link>

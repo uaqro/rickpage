@@ -7,38 +7,39 @@ const EpisodeDetail = props => {
   const [charsArr, setCharsArr] = useState([]);
 
   useEffect(() => {
-    MY_SERVICE.getCharDetail(props.location.state.char_id).then(data => {
+    MY_SERVICE.getEpisode(props.location.state.ep_id).then(data => {
       setEpisode(data.data);
-    });
-    MY_SERVICE.getMultipleChars(
-      episode.characters.map(e => e.match(/\d/))
-    ).then(data => {
-      setCharsArr(data.data);
+      MY_SERVICE.getMultipleChars(
+        data.data.characters.map(e => e.match(/\d+/))
+      ).then(data => {
+        setCharsArr(data.data);
+      });
     });
   }, []);
-
   return (
     <DisplayWrapper>
       <EpDetail>
-        <p>Episode: {episode.name}</p>
-        <p>Air Date: {episode.air_date}</p>
-        <p>Episode: {episode.episode}</p>
-
-        <div className="episodes">
-          {charsArr.map(e => (
-            <CharMiniCard>
-              <img src={e.image} alt="char-img" />
-              <p>{e.name}</p>
-              <Link
-                to={{
-                  pathname: "/character-detail",
-                  state: { char_id: e.match(/\d/) }
-                }}
-              >
-                Ver más
-              </Link>
-            </CharMiniCard>
-          ))}
+        <div className="content">
+          <p>{episode.name}</p>
+          <p>
+            {episode.episode} - {episode.air_date}
+          </p>
+          <p>Characters:</p>
+          <div className="characters">
+            {charsArr.map(e => (
+              <CharMiniCard>
+                <img src={e.image} alt="char-img" />
+                <Link
+                  to={{
+                    pathname: "/character-detail",
+                    state: { char_id: e.id }
+                  }}
+                >
+                  Ver más
+                </Link>
+              </CharMiniCard>
+            ))}
+          </div>
         </div>
       </EpDetail>
     </DisplayWrapper>

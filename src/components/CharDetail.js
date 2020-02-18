@@ -13,7 +13,7 @@ const CharacterDetail = props => {
     gender: "",
     origin: { name: "" },
     location: { name: "" },
-    episodes: []
+    episode: []
   });
 
   useEffect(() => {
@@ -26,16 +26,33 @@ const CharacterDetail = props => {
   return (
     <DisplayWrapper>
       <CharDetail>
-        <img src={character.image} alt="char-image" />
-        <p>Name: {character.name}</p>
-        <p>Status: {character.status}</p>
-        <p>Species: {character.species}</p>
-        <p>Type: {character.type}</p>
-        <p>Gender: {character.gender}</p>
-        <p>Origin: {character.origin.name}</p>
-        <p>Location: {character.location.name}</p>
-        <div className="episodes">
-          {character.episode.map(e => (
+        <div className="left-side">
+          <img src={character.image} alt="char-image" />
+        </div>
+        <div className="right-side">
+          <p>{character.name}</p>
+          <p>Status: {character.status}</p>
+          <p>Species: {character.species}</p>
+          <p>Type: {character.type}</p>
+          <p>Gender: {character.gender}</p>
+          <p>Origin: {character.origin.name}</p>
+          <p>Location: {character.location.name}</p>
+          <p>Episodes:</p>
+          <div className="episodes">
+            {character.episode.map(e => (
+              <Link
+                to={{
+                  pathname: "/episode-detail",
+                  state: { ep_id: e.match(/\d+/) }
+                }}
+              >
+                {e.match(/\d+/)}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* {character.episode.map(e => (
             <Link
               to={{
                 pathname: "/episode-detail",
@@ -44,8 +61,7 @@ const CharacterDetail = props => {
             >
               {e.match(/\d/)}
             </Link>
-          ))}
-        </div>
+          ))} */}
       </CharDetail>
     </DisplayWrapper>
   );

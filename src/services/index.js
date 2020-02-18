@@ -9,8 +9,11 @@ const MY_SERVICE = {
   getCharacters: async () => {
     return await axios.get("https://rickandmortyapi.com/api/character/");
   },
-  getEpisodes: async id => {
+  getEpisodes: async () => {
     return await axios.get("https://rickandmortyapi.com/api/episode/");
+  },
+  getEpisode: async id => {
+    return await axios.get("https://rickandmortyapi.com/api/episode/" + id);
   },
   getCharDetail: async id => {
     return await axios.get("https://rickandmortyapi.com/api/character/" + id);
