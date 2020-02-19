@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DisplayWrapper, StyledForm, SignUpPage } from "./styles/index";
-
+import Swal from "sweetalert2";
 const Singup = () => {
   const [userRegister, setUserRegister] = useState({
     name: "",
@@ -8,14 +8,23 @@ const Singup = () => {
     password: ""
   });
   const handleInput = evt => {
-    const key = evt.name;
-    setUserRegister({ ...userRegister, key: evt.value });
+    const key = evt.target.name;
+    setUserRegister({ ...userRegister, [key]: evt.target.value });
+  };
+  const shoot = e => {
+    e.preventDefault();
+    Swal.fire(
+      `Thanks ${userRegister.name}!
+    Your account was successfully registered.`,
+      "",
+      "success"
+    );
   };
   return (
     <DisplayWrapper>
       <SignUpPage>
         <h1>SIGN UP</h1>
-        <StyledForm>
+        <StyledForm onSubmit={e => shoot(e)}>
           <input
             type="text"
             placeholder="Name"
