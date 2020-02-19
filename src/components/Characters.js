@@ -8,7 +8,7 @@ const Characters = props => {
 
   useEffect(() => {
     MY_SERVICE.getCharacters().then(data => {
-      setCharacters(data.data.results);
+      setCharacters(data.data);
     });
   }, []);
 

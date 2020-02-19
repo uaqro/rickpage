@@ -7,10 +7,21 @@ const MY_SERVICE = {
     return await service.get("/");
   },
   getCharacters: async () => {
-    return await axios.get("https://rickandmortyapi.com/api/character/");
+    return await axios.get(
+      `https://rickandmortyapi.com/api/character/${[...Array(394).keys()]
+        .sort(() => Math.random() * 2 - 1)
+        .slice(0, 30)
+        .join(",")}`
+    );
   },
   getEpisodes: async () => {
-    return await axios.get("https://rickandmortyapi.com/api/episode/");
+    //random 30 elements
+    return await axios.get(
+      `https://rickandmortyapi.com/api/episode/${[...Array(32).keys()]
+        .sort(() => Math.random() * 2 - 1)
+        .slice(0, 30)
+        .join(",")}`
+    );
   },
   getEpisode: async id => {
     return await axios.get("https://rickandmortyapi.com/api/episode/" + id);

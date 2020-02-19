@@ -8,7 +8,7 @@ const Episodes = props => {
 
   useEffect(() => {
     MY_SERVICE.getEpisodes().then(data => {
-      setEpisodes(data.data.results);
+      setEpisodes(data.data);
     });
   }, []);
 
